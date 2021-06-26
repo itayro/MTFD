@@ -45,7 +45,10 @@ class TiffFile:
             ifd = TiffIFD(self._is_little_endian, current_offset)
             self._ifd_list.append(ifd)
             current_offset = ifd.parse_ifd(file_object)
-            data = ifd.get_ifd_data(file_object)
+            try:
+                data = ifd.get_ifd_data(file_object)
+            except Exception:
+                data = None
             self.ifd_images_data.append(data)
 
     @property

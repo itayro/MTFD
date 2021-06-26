@@ -1,5 +1,6 @@
 from utils import InvalidTIFFileException
 from tiff_file.ifd_entry import *
+import os
 import struct
 import math
 import numpy as np
@@ -76,6 +77,12 @@ class TiffIFD:
         strips_per_image = int(math.floor((self._image_length.value + self._rows_per_strip.value - 1) /
                                           self._rows_per_strip.value))
         bytes_per_strip = self._strip_byte_count.value
+
+        # Check if the presumed size of images is not smaller that the file itself, in such case
+        # raise error and do not resume the image data retrieval.
+        if strips_per_image * bytes_per_strip >= os.fstat(file_object.fileno()).st_size:
+            raise InvalidTIFFileException
+
         # If there is a single strip, parse it in a single unpacking.
         if strips_per_image == 1:
             file_object.seek(self._strip_offsets.value)

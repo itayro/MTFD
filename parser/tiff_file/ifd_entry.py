@@ -1,3 +1,4 @@
+
 tag_value_to_name = {
     254: 'NewSubfileType',
     256: 'ImageWidth',
@@ -16,6 +17,7 @@ tag_value_to_name = {
     282: 'XResolution',
     283: 'YResolution',
     284: 'PlanarConfiguration',
+    292: 'T4Options',
     293: 'T6Options',
     296: 'ResolutionUnit',
     297: 'PageNumber',
@@ -23,7 +25,58 @@ tag_value_to_name = {
     306: 'DateTime',
     315: 'Artist',
     317: 'Predictor',
+    318: 'whitepoint',
+    319: 'primarychromaticities',
+    320: 'colormap',
+    321: 'halftonehints',
+    322: 'tilewidth',
+    323: 'tilelength',
+    324: 'tileoffsets',
+    325: 'tilebytecounts',
+    326: 'badfaxlines',
+    327: 'cleanfaxdata',
+    328: 'consecutivebadfaxlines',
+    330: 'subifds',
+    332: 'inkset',
+    333: 'inknames',
+    334: 'numberofinks',
+    336: 'dotrange',
+    337: 'targetprinter',
     338: 'ExtraSamples',
+    339: 'sampleformat',
+    340: 'sminsamplevalue',
+    341: 'smaxsamplevalue',
+    342: 'transferrange',
+    343: 'clippath',
+    344: 'xclippathunits',
+    345: 'yclippathunits',
+    346: 'indexed',
+    347: 'jpegtables',
+    351: 'opiproxy',
+    400: 'globalparametersifd',
+    401: 'profiletype',
+    402: 'faxprofile',
+    403: 'codingmethods',
+    404: 'versionyear',
+    405: 'modenumber',
+    433: 'decode',
+    434: 'defaultimagecolor',
+    512: 'jpegproc',
+    513: 'jpeginterchangeformat',
+    514: 'jpeginterchangeformatlength',
+    515: 'jpegrestartinterval',
+    517: 'jpeglosslesspredictors',
+    518: 'jpegpointtransforms',
+    519: 'jpegqtables',
+    520: 'jpegdctables',
+    521: 'jpegactables',
+    529: 'ycbcrcoefficients',
+    530: 'ycbcrsubsampling',
+    531: 'ycbcrpositioning',
+    532: 'referenceblackwhite',
+    559: 'striprowcounts',
+    700: 'xmp',
+
     33432: 'CopyRight',
     34675: 'InterColorProfile',
 }
@@ -109,7 +162,7 @@ class TiffIFDEntry:
 
     @property
     def tag_name(self):
-        return tag_value_to_name[self._tag]
+        return tag_value_to_name.get(self._tag, None)
 
     @property
     def type(self):
@@ -120,6 +173,7 @@ class TiffIFDEntry:
         for type_name in type_to_bytes_number.keys():
             if type_to_bytes_number[type_name]['value'] == self._type:
                 return type_name
+        return None
 
     @property
     def count(self):
