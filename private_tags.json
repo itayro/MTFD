@@ -1,0 +1,377 @@
+[
+  {
+    "number": 32932,
+    "name": "Wang Annotation",
+    "desc": "Annotation data, as used in 'Imaging for Windows'."
+  },
+  {
+    "number": 33445,
+    "name": "MD FileTag",
+    "desc": "Specifies the pixel data format encoding in the Molecular Dynamics GEL file format."
+  },
+  {
+    "number": 33446,
+    "name": "MD ScalePixel",
+    "desc": "Specifies a scale factor in the Molecular Dynamics GEL file format."
+  },
+  {
+    "number": 33447,
+    "name": "MD ColorTable",
+    "desc": "Used to specify the conversion from 16bit to 8bit in the Molecular Dynamics GEL file format."
+  },
+  {
+    "number": 33448,
+    "name": "MD LabName",
+    "desc": "Name of the lab that scanned this file, as used in the Molecular Dynamics GEL file format."
+  },
+  {
+    "number": 33449,
+    "name": "MD SampleInfo",
+    "desc": "Information about the sample, as used in the Molecular Dynamics GEL file format."
+  },
+  {
+    "number": 33450,
+    "name": "MD PrepDate",
+    "desc": "Date the sample was prepared, as used in the Molecular Dynamics GEL file format."
+  },
+  {
+    "number": 33451,
+    "name": "MD PrepTime",
+    "desc": "Time the sample was prepared, as used in the Molecular Dynamics GEL file format."
+  },
+  {
+    "number": 33452,
+    "name": "MD FileUnits",
+    "desc": "Units for data in this file, as used in the Molecular Dynamics GEL file format."
+  },
+  {
+    "number": 33550,
+    "name": "ModelPixelScaleTag",
+    "desc": "Used in interchangeable GeoTIFF files."
+  },
+  {
+    "number": 33723,
+    "name": "IPTC",
+    "desc": "IPTC (International Press Telecommunications Council) metadata."
+  },
+  {
+    "number": 33918,
+    "name": "INGR Packet Data Tag",
+    "desc": "Intergraph Application specific storage."
+  },
+  {
+    "number": 33919,
+    "name": "INGR Flag Registers",
+    "desc": "Intergraph Application specific flags."
+  },
+  {
+    "number": 33920,
+    "name": "IrasB Transformation Matrix",
+    "desc": "Originally part of Intergraph's GeoTIFF tags, but likely understood by IrasB only."
+  },
+  {
+    "number": 33922,
+    "name": "ModelTiepointTag",
+    "desc": "Originally part of Intergraph's GeoTIFF tags, but now used in interchangeable GeoTIFF files."
+  },
+  {
+    "number": 34264,
+    "name": "ModelTransformationTag",
+    "desc": "Used in interchangeable GeoTIFF files."
+  },
+  {
+    "number": 34377,
+    "name": "Photoshop",
+    "desc": "Collection of Photoshop 'Image Resource Blocks'."
+  },
+  {
+    "number": 34665,
+    "name": "Exif IFD",
+    "desc": "A pointer to the Exif IFD."
+  },
+  {
+    "number": 34675,
+    "name": "ICC Profile",
+    "desc": "ICC profile data."
+  },
+  {
+    "number": 34735,
+    "name": "GeoKeyDirectoryTag",
+    "desc": "Used in interchangeable GeoTIFF files."
+  },
+  {
+    "number": 34736,
+    "name": "GeoDoubleParamsTag",
+    "desc": "Used in interchangeable GeoTIFF files."
+  },
+  {
+    "number": 34737,
+    "name": "GeoAsciiParamsTag",
+    "desc": "Used in interchangeable GeoTIFF files."
+  },
+  {
+    "number": 34853,
+    "name": "GPS IFD",
+    "desc": "A pointer to the Exif-related GPS Info IFD."
+  },
+  {
+    "number": 34908,
+    "name": "HylaFAX FaxRecvParams",
+    "desc": "Used by HylaFAX."
+  },
+  {
+    "number": 34909,
+    "name": "HylaFAX FaxSubAddress",
+    "desc": "Used by HylaFAX."
+  },
+  {
+    "number": 34910,
+    "name": "HylaFAX FaxRecvTime",
+    "desc": "Used by HylaFAX."
+  },
+  {
+    "number": 37724,
+    "name": "ImageSourceData",
+    "desc": "Used by Adobe Photoshop."
+  },
+  {
+    "number": 40965,
+    "name": "Interoperability IFD",
+    "desc": "A pointer to the Exif-related Interoperability IFD."
+  },
+  {
+    "number": 42112,
+    "name": "GDAL_METADATA",
+    "desc": "Used by the GDAL library, holds an XML list of name=value 'metadata' values about the image as a whole, and about specific samples."
+  },
+  {
+    "number": 42113,
+    "name": "GDAL_NODATA",
+    "desc": "Used by the GDAL library, contains an ASCII encoded nodata or background pixel value."
+  },
+  {
+    "number": 50215,
+    "name": "Oce Scanjob Description",
+    "desc": "Used in the Oce scanning process."
+  },
+  {
+    "number": 50216,
+    "name": "Oce Application Selector",
+    "desc": "Used in the Oce scanning process."
+  },
+  {
+    "number": 50217,
+    "name": "Oce Identification Number",
+    "desc": "Used in the Oce scanning process."
+  },
+  {
+    "number": 50218,
+    "name": "Oce ImageLogic Characteristics",
+    "desc": "Used in the Oce scanning process."
+  },
+  {
+    "number": 50706,
+    "name": "DNGVersion",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50707,
+    "name": "DNGBackwardVersion",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50708,
+    "name": "UniqueCameraModel",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50709,
+    "name": "LocalizedCameraModel",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50710,
+    "name": "CFAPlaneColor",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50711,
+    "name": "CFALayout",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50712,
+    "name": "LinearizationTable",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50713,
+    "name": "BlackLevelRepeatDim",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50714,
+    "name": "BlackLevel",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50715,
+    "name": "BlackLevelDeltaH",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50716,
+    "name": "BlackLevelDeltaV",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50717,
+    "name": "WhiteLevel",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50718,
+    "name": "DefaultScale",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50719,
+    "name": "DefaultCropOrigin",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50720,
+    "name": "DefaultCropSize",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50721,
+    "name": "ColorMatrix1",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50722,
+    "name": "ColorMatrix2",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50723,
+    "name": "CameraCalibration1",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50724,
+    "name": "CameraCalibration2",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50725,
+    "name": "ReductionMatrix1",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50726,
+    "name": "ReductionMatrix2",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50727,
+    "name": "AnalogBalance",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50728,
+    "name": "AsShotNeutral",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50729,
+    "name": "AsShotWhiteXY",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50730,
+    "name": "BaselineExposure",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50731,
+    "name": "BaselineNoise",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50732,
+    "name": "BaselineSharpness",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50733,
+    "name": "BayerGreenSplit",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50734,
+    "name": "LinearResponseLimit",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50735,
+    "name": "CameraSerialNumber",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50736,
+    "name": "LensInfo",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50737,
+    "name": "ChromaBlurRadius",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50738,
+    "name": "AntiAliasStrength",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50740,
+    "name": "DNGPrivateData",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50741,
+    "name": "MakerNoteSafety",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50778,
+    "name": "CalibrationIlluminant1",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50779,
+    "name": "CalibrationIlluminant2",
+    "desc": "Used in IFD 0 of DNG files."
+  },
+  {
+    "number": 50780,
+    "name": "BestQualityScale",
+    "desc": "Used in Raw IFD of DNG files."
+  },
+  {
+    "number": 50784,
+    "name": "Alias Layer Metadata",
+    "desc": "Alias Sketchbook Pro layer usage description."
+  },
+  {
+    "number": 50908,
+    "name": "TIFF_RSID",
+    "desc": "This private tag is used in a GEOTIFF standard by DGIWG."
+  },
+  {
+    "number": 50909,
+    "name": "GEO_METADATA",
+    "desc": "This private tag is used in a GEOTIFF standard by DGIWG."
+  }
+]

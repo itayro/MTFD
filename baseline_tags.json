@@ -1,0 +1,182 @@
+[
+  {
+    "number": 254,
+    "name": "NewSubfileType",
+    "desc": "A general indication of the kind of data contained in this subfile."
+  },
+  {
+    "number": 255,
+    "name": "SubfileType",
+    "desc": "A general indication of the kind of data contained in this subfile."
+  },
+  {
+    "number": 256,
+    "name": "ImageWidth",
+    "desc": "The number of columns in the image, i.e., the number of pixels per row."
+  },
+  {
+    "number": 257,
+    "name": "ImageLength",
+    "desc": "The number of rows of pixels in the image."
+  },
+  {
+    "number": 258,
+    "name": "BitsPerSample",
+    "desc": "Number of bits per component."
+  },
+  {
+    "number": 259,
+    "name": "Compression",
+    "desc": "Compression scheme used on the image data."
+  },
+  {
+    "number": 262,
+    "name": "PhotometricInterpretation",
+    "desc": "The color space of the image data."
+  },
+  {
+    "number": 263,
+    "name": "Threshholding",
+    "desc": "For black and white TIFF files that represent shades of gray, the technique used to convert from gray to black and white pixels."
+  },
+  {
+    "number": 264,
+    "name": "CellWidth",
+    "desc": "The width of the dithering or halftoning matrix used to create a dithered or halftoned bilevel file."
+  },
+  {
+    "number": 265,
+    "name": "CellLength",
+    "desc": "The length of the dithering or halftoning matrix used to create a dithered or halftoned bilevel file."
+  },
+  {
+    "number": 266,
+    "name": "FillOrder",
+    "desc": "The logical order of bits within a byte."
+  },
+  {
+    "number": 270,
+    "name": "ImageDescription",
+    "desc": "A string that describes the subject of the image."
+  },
+  {
+    "number": 271,
+    "name": "Make",
+    "desc": "The scanner manufacturer."
+  },
+  {
+    "number": 272,
+    "name": "Model",
+    "desc": "The scanner model name or number."
+  },
+  {
+    "number": 273,
+    "name": "StripOffsets",
+    "desc": "For each strip, the byte offset of that strip."
+  },
+  {
+    "number": 274,
+    "name": "Orientation",
+    "desc": "The orientation of the image with respect to the rows and columns."
+  },
+  {
+    "number": 277,
+    "name": "SamplesPerPixel",
+    "desc": "The number of components per pixel."
+  },
+  {
+    "number": 278,
+    "name": "RowsPerStrip",
+    "desc": "The number of rows per strip."
+  },
+  {
+    "number": 279,
+    "name": "StripByteCounts",
+    "desc": "For each strip, the number of bytes in the strip after compression."
+  },
+  {
+    "number": 280,
+    "name": "MinSampleValue",
+    "desc": "The minimum component value used."
+  },
+  {
+    "number": 281,
+    "name": "MaxSampleValue",
+    "desc": "The maximum component value used."
+  },
+  {
+    "number": 282,
+    "name": "XResolution",
+    "desc": "The number of pixels per ResolutionUnit in the ImageWidth direction."
+  },
+  {
+    "number": 283,
+    "name": "YResolution",
+    "desc": "The number of pixels per ResolutionUnit in the ImageLength direction."
+  },
+  {
+    "number": 284,
+    "name": "PlanarConfiguration",
+    "desc": "How the components of each pixel are stored."
+  },
+  {
+    "number": 288,
+    "name": "FreeOffsets",
+    "desc": "For each string of contiguous unused bytes in a TIFF file, the byte offset of the string."
+  },
+  {
+    "number": 289,
+    "name": "FreeByteCounts",
+    "desc": "For each string of contiguous unused bytes in a TIFF file, the number of bytes in the string."
+  },
+  {
+    "number": 290,
+    "name": "GrayResponseUnit",
+    "desc": "The precision of the information contained in the GrayResponseCurve."
+  },
+  {
+    "number": 291,
+    "name": "GrayResponseCurve",
+    "desc": "For grayscale data, the optical density of each possible pixel value."
+  },
+  {
+    "number": 296,
+    "name": "ResolutionUnit",
+    "desc": "The unit of measurement for XResolution and YResolution."
+  },
+  {
+    "number": 305,
+    "name": "Software",
+    "desc": "Name and version number of the software package(s) used to create the image."
+  },
+  {
+    "number": 306,
+    "name": "DateTime",
+    "desc": "Date and time of image creation."
+  },
+  {
+    "number": 315,
+    "name": "Artist",
+    "desc": "Person who created the image."
+  },
+  {
+    "number": 316,
+    "name": "HostComputer",
+    "desc": "The computer and/or operating system in use at the time of image creation."
+  },
+  {
+    "number": 320,
+    "name": "ColorMap",
+    "desc": "A color map for palette color images."
+  },
+  {
+    "number": 338,
+    "name": "ExtraSamples",
+    "desc": "Description of extra components."
+  },
+  {
+    "number": 33432,
+    "name": "Copyright",
+    "desc": "Copyright notice."
+  }
+]
