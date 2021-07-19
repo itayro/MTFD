@@ -39,17 +39,20 @@ class TiffFile:
 
         # Parse the IFDs of the file.
         self._ifd_list = []
-        self.ifd_images_data = []
         current_offset = self._first_ifd_offset
         while 0 != current_offset:
-            ifd = TiffIFD(self._is_little_endian, current_offset)
-            self._ifd_list.append(ifd)
-            current_offset = ifd.parse_ifd(file_object)
+            # Parse IFD
             try:
-                data = ifd.get_ifd_data(file_object)
+                ifd = TiffIFD(self._is_little_endian, current_offset)
+                self._ifd_list.append(ifd)
+                current_offset = ifd.parse_ifd(file_object)
             except Exception:
-                data = None
-            self.ifd_images_data.append(data)
+                break
+            # If succeeded, parse the ifd data as well.
+            try:
+                ifd.calculate_ifd_data(file_object)
+            except Exception:
+                pass
 
     @property
     def file_name(self):
@@ -80,6 +83,3 @@ class TiffFile:
             for ifd_entry in ifd.entries:
                 tags.append(ifd_entry.tag_name)
         return tags
-
-    def get_images_data(self):
-        return self.ifd_images_data

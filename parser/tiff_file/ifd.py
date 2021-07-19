@@ -1,9 +1,10 @@
-from utils import InvalidTIFFileException
-from tiff_file.ifd_entry import *
 import os
 import struct
 import math
 import numpy as np
+
+from tiff_file.ifd_entry import TiffIFDEntry, type_to_bytes_number
+from utils import InvalidTIFFileException
 
 IFD_OFFSET_IN_BYTES = 4
 IFD_COUNT_IN_BYTES = 2
@@ -21,6 +22,10 @@ class TiffIFD:
         self._strip_byte_count = None
         self._strip_offsets = None
         self._image_length = None
+        self._image_data = None
+        self._baseline_tags_count = 0
+        self._extension_tags_count = 0
+        self._private_tags_count = 0
 
     def parse_ifd(self, file_object):
         """
@@ -53,6 +58,13 @@ class TiffIFD:
             elif entry.tag_name == 'ImageLength':
                 self._image_length = entry
 
+            if entry.is_baseline_tag():
+                self._baseline_tags_count += 1
+            elif entry.is_extension_tag():
+                self._extension_tags_count += 1
+            elif entry.is_private_tag():
+                self._extension_tags_count += 1
+
             self._entries.append(entry)
 
         # Get next IFD offset.
@@ -65,7 +77,7 @@ class TiffIFD:
     def entries(self):
         return self._entries
 
-    def get_ifd_data(self, file_object):
+    def calculate_ifd_data(self, file_object):
         """
             Extract the data from the IFD based on the strips in the file.
 
@@ -73,6 +85,7 @@ class TiffIFD:
         :return:
         """
         image_strips = []
+
         # Calculate the number of strips in the image.
         strips_per_image = int(math.floor((self._image_length.value + self._rows_per_strip.value - 1) /
                                           self._rows_per_strip.value))
@@ -117,4 +130,5 @@ class TiffIFD:
                 file_object.seek(strip_offset)
                 image_strips.append(np.asarray(list(struct.unpack("{bytes_count}c".format(bytes_count=byte_count),
                                                                   file_object.read(byte_count)))))
-        return image_strips
+        self._image_data = image_strips
+

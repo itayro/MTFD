@@ -21,9 +21,10 @@ def main():
                             help="The input directory that contains TIFF files", default=None)
 
     args = arg_parser.parse_args()
+    tiffs = []
 
     if args.input_file is not None:
-        recognize_tiff(args.input_file)
+        tiffs.append(recognize_tiff(args.input_file))
     elif args.input_dir is not None:
         tiffs = []
         for subdir, dirs, files in os.walk(args.input_dir):
@@ -31,11 +32,11 @@ def main():
                 with open(os.path.join(subdir, filename), 'rb') as file_object:
                     print(filename)
                     tiffs.append(recognize_tiff(file_object))
-
-        for tiff in tiffs:
-            print(tiff.get_tags())
     else:
         raise Exception('No input was provided.')
+
+    for tiff in tiffs:
+        print(tiff.get_tags())
 
 
 if __name__ == "__main__":

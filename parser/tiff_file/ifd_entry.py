@@ -1,85 +1,8 @@
+""" TODO: Add file doc
+"""
+import os
+import json
 
-tag_value_to_name = {
-    254: 'NewSubfileType',
-    256: 'ImageWidth',
-    257: 'ImageLength',
-    258: 'BitsPerSample',
-    259: 'Compression',
-    262: 'PhotometricInterpretation',
-    266: 'FillOrder',
-    269: 'DocumentNumber',
-    270: 'ImageDescription',
-    273: 'StripOffsets',
-    274: 'Orientation',
-    277: 'SamplesPerPixel',
-    278: 'RowsPerStrip',
-    279: 'StripByteCount',
-    282: 'XResolution',
-    283: 'YResolution',
-    284: 'PlanarConfiguration',
-    292: 'T4Options',
-    293: 'T6Options',
-    296: 'ResolutionUnit',
-    297: 'PageNumber',
-    305: 'Software',
-    306: 'DateTime',
-    315: 'Artist',
-    317: 'Predictor',
-    318: 'whitepoint',
-    319: 'primarychromaticities',
-    320: 'colormap',
-    321: 'halftonehints',
-    322: 'tilewidth',
-    323: 'tilelength',
-    324: 'tileoffsets',
-    325: 'tilebytecounts',
-    326: 'badfaxlines',
-    327: 'cleanfaxdata',
-    328: 'consecutivebadfaxlines',
-    330: 'subifds',
-    332: 'inkset',
-    333: 'inknames',
-    334: 'numberofinks',
-    336: 'dotrange',
-    337: 'targetprinter',
-    338: 'ExtraSamples',
-    339: 'sampleformat',
-    340: 'sminsamplevalue',
-    341: 'smaxsamplevalue',
-    342: 'transferrange',
-    343: 'clippath',
-    344: 'xclippathunits',
-    345: 'yclippathunits',
-    346: 'indexed',
-    347: 'jpegtables',
-    351: 'opiproxy',
-    400: 'globalparametersifd',
-    401: 'profiletype',
-    402: 'faxprofile',
-    403: 'codingmethods',
-    404: 'versionyear',
-    405: 'modenumber',
-    433: 'decode',
-    434: 'defaultimagecolor',
-    512: 'jpegproc',
-    513: 'jpeginterchangeformat',
-    514: 'jpeginterchangeformatlength',
-    515: 'jpegrestartinterval',
-    517: 'jpeglosslesspredictors',
-    518: 'jpegpointtransforms',
-    519: 'jpegqtables',
-    520: 'jpegdctables',
-    521: 'jpegactables',
-    529: 'ycbcrcoefficients',
-    530: 'ycbcrsubsampling',
-    531: 'ycbcrpositioning',
-    532: 'referenceblackwhite',
-    559: 'striprowcounts',
-    700: 'xmp',
-
-    33432: 'CopyRight',
-    34675: 'InterColorProfile',
-}
 
 """
     Conversion from type value to python struct's format chars.
@@ -156,13 +79,41 @@ class TiffIFDEntry:
         self._value = ifd_value
         self._is_value = self.calculate_is_value()
 
+        self._baseline_tags = json.load(open("C:\\Users\\itayro\\PycharmProjects\\MTFD\\baseline_tags.json", "r"))
+        self._extension_tags = json.load(open("C:\\Users\\itayro\\PycharmProjects\\MTFD\\extension_tags.json", "r"))
+        self._private_tags = json.load(open("C:\\Users\\itayro\\PycharmProjects\\MTFD\\private_tags.json", "r"))
+
     @property
     def tag(self):
         return self._tag
 
     @property
     def tag_name(self):
-        return tag_value_to_name.get(self._tag, None)
+        for tag_obj in self._baseline_tags:
+            if tag_obj['number'] == self._tag:
+                return tag_obj['name']
+        for tag_obj in self._extension_tags:
+            if tag_obj['number'] == self._tag:
+                return tag_obj['name']
+        for tag_obj in self._private_tags:
+            if tag_obj['number'] == self._tag:
+                return tag_obj['name']
+        return None
+
+    def is_baseline_tag(self):
+        for tag_obj in self._baseline_tags:
+            if tag_obj['number'] == self._tag:
+                return tag_obj['name']
+
+    def is_extension_tag(self):
+        for tag_obj in self._extension_tags:
+            if tag_obj['number'] == self._tag:
+                return tag_obj['name']
+
+    def is_private_tag(self):
+        for tag_obj in self._private_tags:
+            if tag_obj['number'] == self._tag:
+                return tag_obj['name']
 
     @property
     def type(self):
@@ -200,3 +151,11 @@ class TiffIFDEntry:
         elif self.type_name in ('LONG', 'SLONG') and 1 >= self.count:
             is_value = True
         return is_value
+
+    def is_valid_entry(self):
+        """Check if the IFD entry is valid.
+
+        A valid IFD entry is considered as such, if the it's type was recognized
+
+        :return:
+        """
