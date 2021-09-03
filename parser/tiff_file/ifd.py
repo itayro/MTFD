@@ -26,6 +26,19 @@ class TiffIFD:
         self._baseline_tags_count = 0
         self._extension_tags_count = 0
         self._private_tags_count = 0
+        self._unknown_tags_count = 0
+
+    def count_baseline_tags(self):
+        return self._baseline_tags_count
+
+    def count_extension_tags(self):
+        return self._extension_tags_count
+
+    def count_private_tags(self):
+        return self._private_tags_count
+
+    def count_unknown_tags(self):
+        return self._unknown_tags_count
 
     def parse_ifd(self, file_object):
         """
@@ -51,7 +64,7 @@ class TiffIFD:
                 file_object.read(IFD_CONTENT_IN_BYTES)))
             if entry.tag_name == 'RowsPerStrip':
                 self._rows_per_strip = entry
-            elif entry.tag_name == 'StripByteCount':
+            elif entry.tag_name == 'StripByteCounts':
                 self._strip_byte_count = entry
             elif entry.tag_name == 'StripOffsets':
                 self._strip_offsets = entry
@@ -64,6 +77,8 @@ class TiffIFD:
                 self._extension_tags_count += 1
             elif entry.is_private_tag():
                 self._extension_tags_count += 1
+            elif entry.is_unknown_tag():
+                self._unknown_tags_count += 1
 
             self._entries.append(entry)
 
@@ -77,6 +92,12 @@ class TiffIFD:
     def entries(self):
         return self._entries
 
+    def check_dangerous_entries(self, file_object):
+        dangerous_entries = {}
+        for entry in self._entries:
+            dangerous_entries[entry.tag_name] = entry.is_dangerous_entry(file_object)
+        return dangerous_entries
+
     def calculate_ifd_data(self, file_object):
         """
             Extract the data from the IFD based on the strips in the file.
@@ -89,15 +110,17 @@ class TiffIFD:
         # Calculate the number of strips in the image.
         strips_per_image = int(math.floor((self._image_length.value + self._rows_per_strip.value - 1) /
                                           self._rows_per_strip.value))
-        bytes_per_strip = self._strip_byte_count.value
-
-        # Check if the presumed size of images is not smaller that the file itself, in such case
-        # raise error and do not resume the image data retrieval.
-        if strips_per_image * bytes_per_strip >= os.fstat(file_object.fileno()).st_size:
-            raise InvalidTIFFileException
 
         # If there is a single strip, parse it in a single unpacking.
         if strips_per_image == 1:
+
+            bytes_per_strip = self._strip_byte_count.value
+
+            # Check if the presumed size of images is not smaller that the file itself, in such case
+            # raise error and do not resume the image data retrieval.
+            if bytes_per_strip >= os.fstat(file_object.fileno()).st_size:
+                raise InvalidTIFFileException
+
             file_object.seek(self._strip_offsets.value)
             image_strips.append(np.asarray(list(struct.unpack("{bytes_count}c".format(bytes_count=bytes_per_strip),
                                                               file_object.read(bytes_per_strip)))))
@@ -125,6 +148,11 @@ class TiffIFD:
                                                    self._strip_byte_count.count *
                                                    type_to_bytes_number[self._strip_byte_count.type_name][
                                                        'byte_count']))
+
+            # Check if the presumed size of images is not smaller that the file itself, in such case
+            # raise error and do not resume the image data retrieval.
+            if sum(strip_num_of_bytes) >= os.fstat(file_object.fileno()).st_size:
+                raise InvalidTIFFileException
             # Get Strips' bytes.
             for strip_offset, byte_count in zip(offsets, strip_num_of_bytes):
                 file_object.seek(strip_offset)
@@ -132,3 +160,8 @@ class TiffIFD:
                                                                   file_object.read(byte_count)))))
         self._image_data = image_strips
 
+    def get_image_data(self):
+        return self._image_data
+
+    def is_valid_ifd_offset(self, file_size):
+        return self.ifd_offset < file_size

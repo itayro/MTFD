@@ -98,7 +98,7 @@ class TiffIFDEntry:
         for tag_obj in self._private_tags:
             if tag_obj['number'] == self._tag:
                 return tag_obj['name']
-        return None
+        return 'unknown_{}'.format(self._tag)
 
     def is_baseline_tag(self):
         for tag_obj in self._baseline_tags:
@@ -114,6 +114,9 @@ class TiffIFDEntry:
         for tag_obj in self._private_tags:
             if tag_obj['number'] == self._tag:
                 return tag_obj['name']
+
+    def is_unknown_tag(self):
+        return not self.is_baseline_tag() and not self.is_extension_tag() and not self.is_private_tag()
 
     @property
     def type(self):
@@ -151,6 +154,19 @@ class TiffIFDEntry:
         elif self.type_name in ('LONG', 'SLONG') and 1 >= self.count:
             is_value = True
         return is_value
+
+    def is_dangerous_entry(self, file_object):
+        file_size = os.fstat(file_object.fileno()).st_size
+        if self.calculate_is_value() or self.type_name is None or type_to_bytes_number[self.type_name]['byte_count'] is None:
+            return False
+        # Negative offset
+        if self._value < 0:
+            return True
+
+        maximal_border = self._value + type_to_bytes_number[self.type_name]['byte_count'] * self.count
+        if maximal_border > file_size:
+            return True
+        return False
 
     def is_valid_entry(self):
         """Check if the IFD entry is valid.
